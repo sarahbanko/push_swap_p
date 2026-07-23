@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_push.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbanko <sbanko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sarahbanko <sarahbanko@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 13:22:25 by sbanko            #+#    #+#             */
-/*   Updated: 2026/07/21 16:58:34 by sbanko           ###   ########.fr       */
+/*   Updated: 2026/07/22 19:49:21 by sarahbanko       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,54 +25,49 @@ t_node *new_node(int value)
 	return (new_node);
 }
 
-void	stack_push_top(t_stack *s, int value)
+void	stack_push_top(t_stack *s, t_node *node)
 {
-	t_node	*node_top;
 	t_node	*last_node;
 
-	node_top = new_node(value);
+	if (!s) // faltou ver se s existe
+		return ;
 	if (!s->top)
 	{
-		s->top = node_top;
+		s->top = node;
 		s->size++;
 		return ;
 	}
-	if (s && s->top != NULL)
-	{
-		last_node = s->top->prev;
+	// tirei o if, pois como ja sabemos q existe um nó e a lista tb existe, ele fica redundante. No primeiro if, quando ele cria, ja sai da função
+	last_node = s->top->prev;
 		
-		node_top->next = s->top;
-		node_top->prev = s->top->prev;
-		
-		s->top->prev = node_top;
-		last_node->next = node_top;
-		s->top = node_top;
-		s->size++;
-	}
+	node->next = s->top;
+	node->prev = s->top->prev;
+	
+	s->top->prev = node;
+	last_node->next = node;
+	s->top = node;
+	s->size++;
+
 }
 
-void	stack_push_bottom(t_stack *s, int value)
+void	stack_push_bottom(t_stack *s, t_node *node)
 {
-	t_node	*node_bottom;
 	t_node	*temp;
 
-	node_bottom = new_node(value);
+	if (!s)
+		return ;
 	if (!s->top)
 	{
-		s->top = node_bottom;
+		s->top = node;
 		s->size++;
 		return ;
 	}
-	if (s && s->top != NULL)
-	{
-		temp = s->top->prev;
+	temp = s->top->prev;
 
-		node_bottom->next = s->top;
-		node_bottom->prev = s->top->prev;
+	node->next = s->top;
+	node->prev = s->top->prev;
 
-		s->top->prev = node_bottom;
-		temp->next = node_bottom;
-		s->size++;
-	}
-	
+	s->top->prev = node;
+	temp->next = node;
+	s->size++;
 }

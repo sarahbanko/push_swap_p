@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbanko <sbanko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sarahbanko <sarahbanko@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:54:28 by sbanko            #+#    #+#             */
-/*   Updated: 2026/07/21 16:32:52 by sbanko           ###   ########.fr       */
+/*   Updated: 2026/07/22 19:49:39 by sarahbanko       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ typedef struct s_stack {
 	int size;
 } t_stack;
 
+t_node *new_node(int value);
+void	stack_push_top(t_stack *s, t_node *node);
+void	stack_push_bottom(t_stack *s, t_node *node);
+t_node	*stack_pop_top(t_stack *s);
+t_node	*stack_pop_bottom(t_stack *s);
+t_stack	*stack_init(void);
+void	stack_free(t_stack *s);
 
 #endif 
 
