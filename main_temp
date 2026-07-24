@@ -1,0 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intmain.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sbanko <sbanko@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/23 11:30:22 by sbanko            #+#    #+#             */
+/*   Updated: 2026/07/23 15:34:18 by sbanko           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "stack/stack.h"
+#include "operations/operations.h"
+#include <stdio.h>
+
+int main(void)
+{
+	t_stack *stack_a;
+	t_stack	*stack_b;
+	t_node	*node_a1;
+	t_node	*node_a2;
+	//t_node	*node_a3;
+
+	stack_a = stack_init();
+	stack_b = stack_init();
+	
+	node_a1 = new_node(10);
+	node_a2 = new_node(20);
+	//node_a3 = new_node(15);
+	
+	stack_push_top(stack_a, node_a1);
+	//stack_push_top(stack_a, node_a3);
+	stack_push_top(stack_b, node_a2);
+	
+
+
+	stack_print(stack_a);
+	printf("----\n");
+	stack_print(stack_b);
+
+	rr(stack_a, stack_b);
+
+	stack_print(stack_a);
+	printf("----\n");
+	stack_print(stack_b);
+	
+
+	stack_free(stack_a);
+	stack_free(stack_b);
+	return(0);
+}
+
+
+
+/*t_node	*node_a1;
+	t_node	*node_a2;
+	t_node	*node_a3;
+
+	stack_a = stack_init();
+	stack_b = stack_init();
+
+	ss(stack_a, stack_b);
+	stack_print(stack_a);
+	stack_print(stack_b); 
+	printf("----------------------\n");
+	
+	node_a1 = new_node(10);
+	node_a2 = new_node(20);
+	node_a3 = new_node(30);
+	stack_push_top(stack_a, node_a1);
+	stack_push_top(stack_a, node_a2);
+	stack_push_top(stack_a, node_a3);
+
+	stack_print(stack_a);
+	stack_print(stack_b);
+	printf("----------------------\n");
+	sa(stack_a); // troca os dois primeiros elementos da pilha a
+	sb(stack_b);
+	ss(stack_a, stack_b);
+	stack_print(stack_a);
+	stack_print(stack_b);
+	printf("----------------------\n");*/
+	

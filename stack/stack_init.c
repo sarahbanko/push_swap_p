@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sarahbanko <sarahbanko@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbanko <sbanko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 13:00:12 by sbanko            #+#    #+#             */
-/*   Updated: 2026/07/22 16:40:21 by sarahbanko       ###   ########.fr       */
+/*   Updated: 2026/07/23 11:51:09 by sbanko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	stack_free(t_stack *s)
 	t_node	*last_node;
 	
 	if (!s)
-		return (NULL);
+		return ;
 	if (!s->top) // tem que ver se a pilha não esta vazia. Se estiver, não tem nó, mas ainda tem liberar a estrutura da pilha
 	{
 		free(s);

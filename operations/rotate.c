@@ -12,19 +12,29 @@ void    rotate(t_stack *s)
 
 void    ra(t_stack *a)
 {
+    if (a->top == a->top->next)
+        return ;
     rotate(a);
     write(1, "ra\n", 3);
 }
 
 void    rb(t_stack *b)
 {
+    if (b->top == b->top->next)
+        return ;
     rotate(b);
     write(1, "rb\n", 3);
 }
 
 void    rr(t_stack *a, t_stack *b)
 {
-    ra(a);
-    rb(b);
+    if (!a && !b)
+        return ;
+    if (!a->top && !b->top)
+        return ;
+    if ((a->top == a->top->next) && (b->top == b->top->next))
+        return ;
+    rotate(a);
+    rotate(b);
     write(1, "rr\n", 3);
 }
