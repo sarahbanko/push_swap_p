@@ -23,8 +23,8 @@ t_node	*stack_pop_top(t_stack *s)
         s->top = NULL;
         s->size--;
     }
-    pop_top->prev = NULL; // precisamos desconectar o nó que vamos retornar
-    pop_top->next = NULL; // perguntar na 42 se é melhor deixá-lo isolado mesmo
+    pop_top->prev = pop_top; // verificar se não deu erro ao referenciá-lo a ele mesmo
+    pop_top->next = pop_top; 
     return (pop_top);
 }
 
