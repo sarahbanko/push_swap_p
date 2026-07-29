@@ -2,50 +2,43 @@
 #include <stdio.h>
 #include "operations/operations.h"
 #include "algorithms/algorithms.h"
+#include <time.h>
+#include <stdlib.h>
+
 
 int	main(void)
 {
-	t_stack *a;
-    /*t_node *node_a1;
-    t_node *node_a2;
-    t_node *node_a3;
-    t_node *node_a4;
-    t_node *node_a5; */
-
+    t_stack *a;
     t_stack *b;
-    /*t_node *node_1;
-    t_node *node_2;
-    t_node *node_3; */
+    t_node *node_a1;
+    int     operations;
+    double disorder;
+    int count;
+    int random_num;
 
+
+    count = 5;
     a = stack_init();
-    /*node_a2 = new_node(-1);
-    node_a1 = new_node(3);
-    node_a3 = new_node(5);
-    node_a4 = new_node(0);
-    node_a5 = new_node(2); 
-    stack_push_bottom(a, node_a1);
-    stack_push_bottom(a, node_a2);
-    stack_push_bottom(a, node_a3);
-    stack_push_bottom(a, node_a4);
-    stack_push_bottom(a, node_a5); */
-
+    srand((unsigned int)time(NULL));
+    while (count >= 0)
+    {
+        random_num = (rand() % (2147483647 - 1 + 1)) + 1;
+        node_a1 = new_node(random_num);
+        stack_push_bottom(a, node_a1);
+        count--;
+    }
 
     b = stack_init();
-    /*
-    node_1 = new_node(5);
-    node_2 = new_node(7);
-    node_3 = new_node(4);
-    stack_push_bottom(b, node_1);
-    stack_push_bottom(b, node_2);
-    stack_push_bottom(b, node_3); */
-
     
-    insertion_sort(a, b);
+    disorder = compute_disorder(a);
+    operations = insertion_sort(a, b);
 
-    stack_print(a);
+    //stack_print(a);
+    printf("disorder: %.2f", disorder);
     printf("\n");
-    printf("size a: %d\n", a->size);
-    printf("size b: %d\n", b->size);
+    printf("quantidade de operações realizadas: %d\n", operations);
+    printf("\n");
+
 
     stack_free(a);
 
