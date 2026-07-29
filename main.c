@@ -5,7 +5,6 @@
 #include <time.h>
 #include <stdlib.h>
 
-
 int	main(void)
 {
     t_stack *a;

@@ -2,10 +2,10 @@ Parsing:
 
 argc == 1 : quando a linha de comando tiver apenas o nome do programa -> return (0);
 argc == 2 :
-    1 opção: "" || " " : string vazia 
+    1 opção: ./push_swap "" || ./push_swap " " : string vazia 
         - enviar Error\n -> stderr (erros e informações do bench) 
         - sai do programa
-    2 opção: "6 2 0 7" : num passados como string
+    2 opção: ./push_swap "6 2 0 7" : num passados como string
         - usar a split para separar a parte numerica - salvar em uma variavel para usar nos algoritmos
         obs: conferir se os numeros não são duplicados ou se não tem espaços duplos
 argc > 2
@@ -29,3 +29,6 @@ obs: o primeiro argumento passado é o topo da pilha
 - Parsing termina quando a pilha estiver cheia
 - antes de realizar qualquer operação o programa calcula a disorder
 
+Funcoes auxiliares:
+- verificação de numeros repetidos
+- 
