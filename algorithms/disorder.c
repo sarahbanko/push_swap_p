@@ -6,7 +6,7 @@
 /*   By: sarahbanko <sarahbanko@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/26 12:26:15 by sarahbanko        #+#    #+#             */
-/*   Updated: 2026/07/26 12:26:16 by sarahbanko       ###   ########.fr       */
+/*   Updated: 2026/07/29 07:15:53 by sarahbanko       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ double compute_disorder(t_stack *s)
     t_node  *current;
     t_node  *next;
 
-    if (!s)
-        return (0);
-    if (s->size == 0 || s->size == 1)
+    if (!s || s->size < 2)
         return (0);
     mistakes = 0;
     total_pairs = 0;
@@ -31,9 +29,9 @@ double compute_disorder(t_stack *s)
         next = current->next; // recomeça para comparar o next com o novo atual
         while (next != s->top)
         {
-            total_pairs += 1;
+            total_pairs++;
             if (current->content > next->content)
-                mistakes += 1;
+                mistakes++;
             next = next->next; // para andar com o next e mantem o current parado para fazer todas as comparações
         }
         current = current->next;
