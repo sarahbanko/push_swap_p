@@ -4,7 +4,7 @@ void    rotate(t_stack *s)
 {
     t_node  *first_node;
 
-    if (!s)
+    if (!s || s->size < 2)
         return ;
     first_node = stack_pop_top(s);
     stack_push_bottom(s, first_node);
@@ -12,7 +12,7 @@ void    rotate(t_stack *s)
 
 void    ra(t_stack *a)
 {
-    if (a->top == a->top->next)
+    if (!a || a->size < 2) //se tiver apenas 1 elemento não acontece
         return ;
     rotate(a);
     write(1, "ra\n", 3);
@@ -20,7 +20,7 @@ void    ra(t_stack *a)
 
 void    rb(t_stack *b)
 {
-    if (b->top == b->top->next)
+    if (!b || b->size < 2)
         return ;
     rotate(b);
     write(1, "rb\n", 3);
@@ -28,11 +28,7 @@ void    rb(t_stack *b)
 
 void    rr(t_stack *a, t_stack *b)
 {
-    if (!a && !b)
-        return ;
-    if (!a->top && !b->top)
-        return ;
-    if ((a->top == a->top->next) && (b->top == b->top->next))
+    if ((!a || a->size < 2) && (!b || b->size < 2))
         return ;
     rotate(a);
     rotate(b);

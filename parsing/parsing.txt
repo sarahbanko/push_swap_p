@@ -1,0 +1,31 @@
+Parsing:
+
+argc == 1 : quando a linha de comando tiver apenas o nome do programa -> return (0);
+argc == 2 :
+    1 opção: "" || " " : string vazia 
+        - enviar Error\n -> stderr (erros e informações do bench) 
+        - sai do programa
+    2 opção: "6 2 0 7" : num passados como string
+        - usar a split para separar a parte numerica - salvar em uma variavel para usar nos algoritmos
+        obs: conferir se os numeros não são duplicados ou se não tem espaços duplos
+argc > 2
+    1. separar "--" de flag e conferir
+        - simple:
+        - medium
+        - complex
+        - adaptive
+        - bench (esta depois das flags ou não)
+    2 . depois de passar todas as flags: cada token representa um inteiro válido?
+        - Error\n - sair
+    3. converter os numeros que estão como char em inteiros com atoi
+        - é permitido numeros negativos (conferir sinal +/-)
+        - checar se não existem números duplicados. Se existir:
+            - Error\n - sair
+        - checar se o numero esta dentro do limite do int MIN/MAX
+            - se estiver fora: - Error\n - sair
+
+obs: o primeiro argumento passado é o topo da pilha
+
+- Parsing termina quando a pilha estiver cheia
+- antes de realizar qualquer operação o programa calcula a disorder
+

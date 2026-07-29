@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intmain.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbanko <sbanko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sarahbanko <sarahbanko@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 11:30:22 by sbanko            #+#    #+#             */
-/*   Updated: 2026/07/24 15:11:01 by sbanko           ###   ########.fr       */
+/*   Updated: 2026/07/29 06:52:38 by sarahbanko       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int main()
 {
 
 	t_stack *numbers = stack_init(); 
+	t_stack *b = stack_init();
 	t_node * t6 = new_node(0);
 	t_node * t5 = new_node(5);
 	t_node * t4 = new_node(7);
@@ -33,6 +34,6 @@ int main()
 	stack_push_top(numbers, t1);
 	
 	//stack_print(numbers);
-	insertion_sort(numbers);
+	insertion_sort(numbers, b);
 	//stack_print(numbers);
 }
