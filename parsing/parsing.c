@@ -6,7 +6,7 @@
 /*   By: sbanko <sbanko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 12:20:35 by sarahbanko        #+#    #+#             */
-/*   Updated: 2026/07/29 16:43:13 by sbanko           ###   ########.fr       */
+/*   Updated: 2026/07/30 17:44:45 by sbanko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,62 @@ int parsing(int argc, char **argv)
     return (0);
 }
 
-// ./push_swap "2 +4 --1 a"
+void atoi_adaptive(char **str, int *result)
+{
+	int	i;
+	int	j;
+	int sign;
+	int acc;
+
+	sign = 1;
+	i = 0;
+	acc = 0;
+	while (str[i] != NULL)
+	{
+		while ((str[i][j] >= 9 && str[i][j] <= 13) || str[i][j] == ' ')
+			i++;
+		j = 0;
+		while (str[i][j] != '\0')
+		{
+			if (str[i][j] != '-' && str[i][j] != '+' && !ft_isdigit(str[i][j]))
+				return ;
+			if ((str[i][j] == '+' || str[i][j] == '-'))
+			{
+				if (!(j == 0))
+					return ;
+
+				else
+				{
+					if (str[i][j] == '-')
+						sign = -sign;
+				}
+			}
+			if (str[i][j] >= '0' && str[i][j] <= '9')
+			{
+				acc = (acc * 10) + (str[i][j] - '0');
+			}
+			
+			j++;
+		}
+		result[i] = sign * acc;
+		sign = 1;
+		acc = 0;
+		i++;
+	}
+}
+
+int main() 
+{
+    char *s[] = {"-10", "50", NULL};
+
+	int result[ft_strlen(s)];
+
+    int size = sizeof(s) / sizeof(s[0]);
+
+    atoi_adaptive(s, result);
+
+    int i = 0;
+    while (i < size) printf("%d ", result[i++]);
+
+    return 0;
+}
