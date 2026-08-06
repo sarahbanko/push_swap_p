@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbanko <sbanko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sarahbanko <sarahbanko@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/28 12:20:35 by sarahbanko        #+#    #+#             */
-/*   Updated: 2026/07/30 17:44:45 by sbanko           ###   ########.fr       */
+/*   Updated: 2026/08/05 12:25:40 by sarahbanko       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-#include "libft.h"
+//#include "libft.h"
 
 int *ft_atoi(const char *nptr)
 {

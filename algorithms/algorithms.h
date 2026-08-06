@@ -6,5 +6,6 @@
 
 double compute_disorder(t_stack *s);
 int	insertion_sort(t_stack *a, t_stack *b);
+void index_stack(t_stack *s);
 
 #endif

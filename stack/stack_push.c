@@ -6,7 +6,7 @@
 /*   By: sarahbanko <sarahbanko@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 13:22:25 by sbanko            #+#    #+#             */
-/*   Updated: 2026/07/22 19:49:21 by sarahbanko       ###   ########.fr       */
+/*   Updated: 2026/08/05 14:25:13 by sarahbanko       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_node *new_node(int value)
 	if (!new_node)
 		return (NULL);
 	new_node->content = value;
+	new_node->index = 0;
 	new_node->prev = new_node;
 	new_node->next = new_node;
 	return (new_node);

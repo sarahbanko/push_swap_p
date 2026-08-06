@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbanko <sbanko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sarahbanko <sarahbanko@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/21 10:54:28 by sbanko            #+#    #+#             */
-/*   Updated: 2026/07/24 14:38:09 by sbanko           ###   ########.fr       */
+/*   Updated: 2026/08/05 14:23:09 by sarahbanko       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef struct s_node {
 	int	content;
+	int index; // para receber o index
 	struct s_node *next;
 	struct s_node *prev;
 } t_node;
