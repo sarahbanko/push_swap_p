@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrperei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/07 16:04:56 by adrperei          #+#    #+#             */
-/*   Updated: 2026/08/07 16:04:57 by adrperei         ###   ########.fr       */
+/*   Created: 2026/08/07 16:04:30 by adrperei          #+#    #+#             */
+/*   Updated: 2026/08/07 16:04:31 by adrperei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef PARSER_H
+# define PARSER_H
 
 # include "stack.h"
 
@@ -25,8 +25,5 @@ typedef enum e_strategy
 }	t_strategy;
 
 t_stack	*parse_args(int argc, char **argv, t_strategy *strat, int *bench);
-int		match_flag(const char *arg, const char *ref);
-int		has_duplicate(t_stack *a, int value);
-int		is_valid_int(const char *str, int *value);
 
 #endif

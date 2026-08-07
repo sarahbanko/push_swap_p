@@ -5,10 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adrperei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/07 15:46:49 by adrperei          #+#    #+#             */
-/*   Updated: 2026/08/07 15:46:53 by adrperei         ###   ########.fr       */
+/*   Created: 2026/08/07 16:03:58 by adrperei          #+#    #+#             */
+/*   Updated: 2026/08/07 16:03:59 by adrperei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+#include "args_builder.h"
+#include "utils/ft_split.h"
+#include <stdlib.h>
+#include <unistd.h>
 
 // calcula o tamanho total de caracteres juntando todos os argv
 // pulamos o argv[0] (nome do programa) e somamos +1 pra cada

@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   args_builder.h                                     :+:      :+:    :+:   */
+/*   ft_utils.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrperei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sbanko <sbanko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/07 16:04:06 by adrperei          #+#    #+#             */
-/*   Updated: 2026/08/07 16:04:07 by adrperei         ###   ########.fr       */
+/*   Created: 2026/08/07 00:00:00 by sbanko            #+#    #+#             */
+/*   Updated: 2026/08/07 00:00:00 by sbanko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FT_UTILS_H
+# define FT_UTILS_H
 
-#ifndef ARGS_BUILDER_H
-# define ARGS_BUILDER_H
-
-char	**build_args(int argc, char **argv, int *out_argc);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+int		ft_isdigit(int c);
+int		ft_isspace(int c);
 
 #endif
