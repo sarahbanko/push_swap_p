@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_wired.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbanko <sbanko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adrperei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/21 10:50:00 by sbanko            #+#    #+#             */
-/*   Updated: 2026/08/07 00:00:00 by sbanko           ###   ########.fr       */
+/*   Created: 2026/08/07 16:03:49 by adrperei          #+#    #+#             */
+/*   Updated: 2026/08/07 16:03:50 by adrperei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "args_builder.h"
 #include "parsing/parsing.h"
@@ -18,7 +19,6 @@
 
 // verifica se a stack A ja esta ordenada (crescente)
 // anda pela lista circular checando se cada content <= proximo->content
-// se a pilha tem 0 ou 1 elementos, ja esta ordenada
 static int	is_sorted(t_stack *a)
 {
 	t_node	*node; // bookmark pra andar na lista
@@ -50,46 +50,62 @@ static void	free_args(char **args, int argc)
 	free(args);
 }
 
+// escolhe e executa o algoritmo de ordenacao baseado na estrategia
+// --simple: insertion_sort (bom pra poucos elementos)
+// --medium ou --complex: chunk_sort + organize_stack_b
+// --adaptive (padrao): insertion_sort pra <=5, chunk_sort pra >5
+static void	sort_stack(t_stack *a, t_stack *b, t_strategy strat)
+{
+	if (is_sorted(a))
+		return ;
+	index_stack(a);
+	if (strat == SIMPLE)
+		insertion_sort(a, b);
+	else if (strat == MEDIUM || strat == COMPLEX)
+	{
+		chunk_sort(a, b);
+		organize_stack_b(a, b);
+	}
+	else // ADAPTIVE: escolhe baseado no tamanho
+	{
+		if (a->size <= 5)
+			insertion_sort(a, b);
+		else
+		{
+			chunk_sort(a, b);
+			organize_stack_b(a, b);
+		}
+	}
+}
+
 // fluxo principal:
 // 1. build_args: junta tudo e separa por espacos (lida com "1 2" e 1 2)
 // 2. parse_args: valida cada argumento e monta a stack A
-// 3. is_sorted: se ja ta ordenado, nao faz nada
-// 4. index_stack: atribui indices de 0 a n-1 baseado no valor
-// 5. escolhe o algoritmo: insertion_sort pra <=5, chunk_sort pra >5
-// 6. libera tudo
+// 3. sort_stack: escolhe o algoritmo e ordena
+// 4. libera tudo
 int	main(int argc, char **argv)
 {
-	t_stack	*a; // pilha principal
-	t_stack	*b; // pilha auxiliar
-	char	**new_args; // argumentos processados pelo build_args
-	int		new_argc; // quantidade de argumentos depois do build_args
+	t_strategy	strat; // estrategia de ordenacao (--simple, --medium, etc)
+	int			bench; // flag de benchmarking (nao usado por enquanto)
+	t_stack		*a; // pilha principal
+	t_stack		*b; // pilha auxiliar
+	char		**new_args; // argumentos processados pelo build_args
+	int			new_argc; // quantidade de argumentos depois do build_args
 
 	new_args = build_args(argc, argv, &new_argc);
 	if (!new_args)
 		return (1);
-	a = parse_args(new_argc, new_args);
+	a = parse_args(new_argc, new_args, &strat, &bench);
 	free_args(new_args, new_argc); // libera os argumentos, a stack ja foi criada
 	if (!a)
 		return (1);
-	if (is_sorted(a)) // ja esta ordenada, nao precisa fazer nada
-	{
-		stack_free(a);
-		return (0);
-	}
 	b = stack_init();
 	if (!b)
 	{
 		stack_free(a);
 		return (1);
 	}
-	index_stack(a); // atribui indices pra todos os nodes
-	if (a->size <= 5)
-		insertion_sort(a, b);
-	else
-	{
-		chunk_sort(a, b);
-		organize_stack_b(a, b);
-	}
+	sort_stack(a, b, strat);
 	stack_free(a);
 	stack_free(b);
 	return (0);
