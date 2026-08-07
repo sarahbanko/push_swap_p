@@ -80,9 +80,8 @@ int	main(void)
 {
 	t_stack	*a;
 	t_stack	*b;
-	int		numbers[100];
-	int		count_a_to_b;
-	int		count_b_to_a;
+	int		numbers[500];
+	int		count_op;
 	int		i;
 
 	a = stack_init();
@@ -90,23 +89,18 @@ int	main(void)
 	if (!a || !b)
 		return (1);
 	i = 0;
-	while (i < 100)
+	while (i < 500)
 	{
 		numbers[i] = i;
 		i++;
 	}
 	srand(time(NULL));
-	shuffle_numbers(numbers, 100);
-	fill_stack(a, numbers, 100);
-
-    printf("Desordem inicial: %.2f%%\n", compute_disorder(a));
-    
+	shuffle_numbers(numbers, 500);
+	fill_stack(a, numbers, 500);
+	printf("Desordem inicial: %.2f%%\n", compute_disorder(a));
 	index_stack(a);
-	count_a_to_b = chunk_sort(a, b);
-	count_b_to_a = organize_stack_b(a, b);
-	printf("\nA -> B: %d operações\n", count_a_to_b);
-	printf("B -> A: %d operações\n", count_b_to_a);
-	printf("TOTAL: %d operações\n", count_a_to_b + count_b_to_a);
+	count_op = chunk_sort(a, b);
+	printf("\nTOTAL: %d operações\n", count_op);
 	printf("A ordenada: %s\n", is_sorted(a) ? "SIM" : "NAO");
 	printf("Tamanho de A: %d\n", a->size);
 	printf("Tamanho de B: %d\n", b->size);

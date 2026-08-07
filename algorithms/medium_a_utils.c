@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chunk_utils.c                                      :+:      :+:    :+:   */
+/*   medium_a_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbanko <sbanko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 16:30:23 by sbanko            #+#    #+#             */
-/*   Updated: 2026/08/06 16:35:35 by sbanko           ###   ########.fr       */
+/*   Updated: 2026/08/07 12:35:56 by sbanko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int square_root(int n)
     return (root - 1);
 }
 
-int	find_top_distance(t_stack *a, int start, int end)
+int	find_top_distance_a(t_stack *a, int start, int end)
 {
 	t_node *current;
 	int	distance;
@@ -39,7 +39,7 @@ int	find_top_distance(t_stack *a, int start, int end)
 	return (distance);
 }
 
-int	find_bottom_distance(t_stack *a, int start, int end)
+int	find_bottom_distance_a(t_stack *a, int start, int end)
 {
 	t_node *current;
 	int	distance;
@@ -54,13 +54,13 @@ int	find_bottom_distance(t_stack *a, int start, int end)
 	return (distance);
 }
 
-int	move_chunk_to_top(t_stack *a, int start, int end)
+int	move_chunk_to_top_a(t_stack *a, int start, int end)
 {
 	int	count_op;
 
 	count_op = 0;
-	if (find_top_distance(a, start, end)
-		< find_bottom_distance(a, start, end))
+	if (find_top_distance_a(a, start, end)
+		< find_bottom_distance_a(a, start, end))
 	{
 		while (!(a->top->index >= start
 				&& a->top->index <= end))
@@ -90,7 +90,7 @@ int	process_chunk(t_stack *a, t_stack *b, int start, int end)
 	count_op = 0;
 	while (sent < end - start + 1)
 	{
-		count_op += move_chunk_to_top(a, start, end);
+		count_op += move_chunk_to_top_a(a, start, end);
 		pb(b, a);
 		count_op++;
 		if (b->top->index < (start + end) / 2)

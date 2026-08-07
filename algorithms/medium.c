@@ -6,7 +6,7 @@
 /*   By: sbanko <sbanko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 13:08:39 by sarahbanko        #+#    #+#             */
-/*   Updated: 2026/08/06 17:26:37 by sbanko           ###   ########.fr       */
+/*   Updated: 2026/08/07 12:51:59 by sbanko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,62 +44,25 @@ int	chunk_sort(t_stack *a, t_stack *b)
 			chunk.elements++;
 		chunk.end = chunk.start + chunk.elements - 1;
 	}
+    count_op += move_b_to_a(a, b);
 	return (count_op);
 }
 
-int organize_stack_b(t_stack *a, t_stack *b)
+int move_b_to_a(t_stack *a, t_stack *b)
 {
-   t_node *current;
-   int dist_top;
-   int dist_bottom;
    int current_index;
    int count_op;
    
    if (!a || !b || b->size == 0)
 		return (0);
-   
     current_index = b->size - 1;
     count_op = 0;
     while (b->size > 0)
     {
-        current = b->top;
-        dist_top = 0;
-        while (current->index != current_index)
-        {
-            dist_top++;
-            current = current->next;
-        }
-    
-        dist_bottom = 1;
-        current = b->top->prev;
-        while (current->index != current_index)
-        {
-            dist_bottom++;
-            current = current->prev;
-        }
-    
-        if (dist_top < dist_bottom)
-        {
-            while (b->top->index != current_index)
-            {    
-                rb(b);
-                count_op++;
-			}
-            pa(a, b);
-            count_op++;
-            current_index--;
-        }
-        else
-        {
-            while(b->top->index != current_index)
-            {
-                rrb(b);
-                count_op++;
-            }
-            pa(a, b);
-            count_op++;
-            current_index--;
-        }
+        count_op += push_stack_a(b, current_index);
+        pa(a, b);
+        count_op++;
+        current_index--;
     }
     return (count_op);
 }
